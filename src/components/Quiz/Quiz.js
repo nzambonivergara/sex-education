@@ -68,12 +68,8 @@ const Quiz = ({ questions, checkAnswer, score }) => {
           <p>Your score is {score}/{questions.length}</p>
         </div>
       )}
-
     </form>
   )
 }
 
 export default Quiz;
-  // // <Link to="/dashboard">Skip for now.</Link>
-  // { userAnswers.length < questions.length -1 &&  }
-  // { userAnswers.length &&  }
