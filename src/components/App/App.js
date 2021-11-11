@@ -1,29 +1,48 @@
-import {fetchQuestions} from '../../apiCalls'
-import React, {Component} from 'react'
+import { fetchQuestions } from '../../apiCalls';
+import { useState, useEffect } from 'react';
+import { Route, Switch, Link, NavLink } from 'react-router-dom';
+import Quiz from '../Quiz/Quiz';
 import './App.css';
 
-class App extends Component {
-  constructor() {
-    super()
-    this.state = {
-      questions: []
+const App = () => {
+  const [ questions, setQuestions ] = useState([])
+  const [ error, setError] = useState('')
+  const [ score, setScore ] = useState(0);
+
+  useEffect(() => {
+    fetchQuestions()
+      .then(data => setQuestions(data))
+      .catch(error =>  setError(error.message));
+  }, [])
+
+  const checkAnswer = (answer, step) => {
+    if (answer === questions[step].correctAnswer) {
+      setScore(score + 1)
+      console.log(score)
     }
   }
 
-  componentDidMount() {
-    fetchQuestions()
-      .then(data => this.setState({ questions: data }));
-  }
-
-  render() {
-    return (
+  return (
       <div className="App">
         <h1>Sex Education</h1>
-        <img src="https://occ-0-2794-2219.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABX_JCq57-TuTQRDPcumA7WlVQcLuflwx5fOmRLhQArm-6Z9fwrXHy1be91iW0nBu5ofCUJKNU0_4vfuSW-rART9C8S9fxgPsSM17DaROhANJbd5N.jpg?r=6e7" alt="sex education series"/>
+        <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2021/09/SEX-EDUCATION-SEASON-4.jpg" alt="sex education series"/>
+        <Route
+         exact path="/"
+          render={() => {
+            return (
+              <>
+                <h2>Ready to play and see how much you know about sexual health?</h2>
+                <Link to="/quiz">YES!</Link>
+              </>
+            )
+          }}
+        />
+        <Route
+          exact path="/quiz"
+          render={() => <Quiz questions={ questions } checkAnswer={ checkAnswer } score={ score } />}
+        />
       </div>
-    );
-  }
-
+  )
 }
 
 export default App;
