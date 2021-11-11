@@ -24,6 +24,17 @@ const App = () => {
 
   return (
       <div className="App">
+        <nav>
+          <NavLink to="/resources">
+            Resources
+          </NavLink>
+          <NavLink to="/quiz">
+            Quiz
+          </NavLink>
+          <NavLink to="/dashboard">
+            Dashboard
+          </NavLink>
+        </nav>
         <h1>Sex Education</h1>
         <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2021/09/SEX-EDUCATION-SEASON-4.jpg" alt="sex education series"/>
         <Route
@@ -33,6 +44,7 @@ const App = () => {
               <>
                 <h2>Ready to play and see how much you know about sexual health?</h2>
                 <Link to="/quiz">YES!</Link>
+                <Link to="/dashboard">Skip for now!</Link>
               </>
             )
           }}
@@ -40,6 +52,12 @@ const App = () => {
         <Route
           exact path="/quiz"
           render={() => <Quiz questions={ questions } checkAnswer={ checkAnswer } score={ score } />}
+        />
+        <Route
+          exact path="/dashboard"
+          render={() => {
+            return (<iframe width="370" height="200" src="https://www.youtube.com/embed/Xo3Cnfhf9Q8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>)
+          }}
         />
       </div>
   )
