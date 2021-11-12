@@ -19,3 +19,7 @@ h1 {
 .active {
   border-bottom: 3px solid black;
 }
+
+.fact-container {
+  background-color: rgba(255, 255, 255, 0.5)
+}

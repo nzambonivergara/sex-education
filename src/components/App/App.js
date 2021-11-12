@@ -9,11 +9,23 @@ const App = () => {
   const [ questions, setQuestions ] = useState([])
   const [ error, setError] = useState('')
   const [ score, setScore ] = useState(0);
+  const [ fact, setFact ] = useState('')
 
   useEffect(() => {
     fetchQuestions()
       .then(data => setQuestions(data.slice(0,5)))
       .catch(error =>  setError(error.message));
+  }, [])
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (questions.length) {
+        setFact(questions[Math.floor(Math.random() * questions.length)].fact)
+        console.log("running", fact)
+      }
+    }, 5000)
+    
+    return () => clearInterval(intervalId)
   }, [])
 
   const checkAnswer = (answer, step) => {
@@ -42,10 +54,15 @@ const App = () => {
             render={() => {
               return (
                 <>
+                  <div className="fact-container">
+                    <h2>Did you know? </h2>
+                    <p>{ fact }</p>
+                  </div>
                   <h2>Take the Sexual Health Myth Debunking Quiz!</h2>
                   <Link to="/quiz">YES!</Link>
                   <footer>
-                    <Link to="/video">Watch Sex Education series video.</Link>
+                    <Link to="/video">👀 Watch Otis Milburn's best advice from Sex Education!</Link>
+                    <p>Please note: This app’s content is provided for general informational purposes only, and under no circumstances should be considered a substitute for professional medical advice, diagnosis or treatment from a qualified physician or healthcare provider.</p>
                   </footer>
                 </>
               )
