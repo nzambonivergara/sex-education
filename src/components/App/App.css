@@ -1,6 +1,5 @@
 .App {
   text-align: center;
-  /* background: linear-gradient(134deg, rgb(252, 252, 252) 0%, rgb(194, 255, 244) 40%, rgb(135, 154, 250) 80%); */
   background-repeat: repeat;
   height: 100vh;
   display: flex;
@@ -11,28 +10,12 @@
 }
 
 h1 {
-  /* margin: 0; */
-  /* z-index: 1; */
-  /* position: absolute;
-  top: 8vh;
-  left: 3vw; */
   font-size: 2rem;
   text-transform: uppercase;
-  /* color: #7c55f2; */
   text-align: left;
   margin: 0.75rem 1rem;
 }
 
 .active {
-
   border-bottom: 3px solid black;
 }
-
-
-/*
---grad-1: linear-gradient(134deg,#7c55f2,#af89fa 52%,#fab6b6);
-    --grad-2: linear-gradient(135deg,#7c55f2,#b479f2 51%,#fabbea);
-    --grad-3: linear-gradient(135deg,#7c55f2,#a173ff 51%,#cfa5fa);
-    --grad-4: linear-gradient(134deg,#7c55f2,#af89fa 52%,#ffdabf);
-    --grad-mobile: linear-gradient(134deg,#fcfcfc,#e3f0ff 40%,#e8c2ff 80%);
-    --grad-menu-tablet: linear-gradient(134deg,#fcfcfc,#e3f0ff 40%,#e8c2ff 80%); */
