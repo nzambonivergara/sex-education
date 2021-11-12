@@ -20,7 +20,6 @@ const App = () => {
     if (answer === questions[step].correctAnswer) {
       setScore(score + 1)
     }
-    console.log(score)
   }
 
   const resetScore = () => {
