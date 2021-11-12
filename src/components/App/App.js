@@ -1,29 +1,73 @@
-import {fetchQuestions} from '../../apiCalls'
-import React, {Component} from 'react'
+import { fetchQuestions } from '../../apiCalls';
+import { useState, useEffect } from 'react';
+import { Route, Switch, Link, NavLink, Redirect } from 'react-router-dom';
+import NavBar from '../NavBar/NavBar';
+import Quiz from '../Quiz/Quiz';
 import './App.css';
 
-class App extends Component {
-  constructor() {
-    super()
-    this.state = {
-      questions: []
+const App = () => {
+  const [ questions, setQuestions ] = useState([])
+  const [ error, setError] = useState('')
+  const [ score, setScore ] = useState(0);
+
+  useEffect(() => {
+    fetchQuestions()
+      .then(data => setQuestions(data.slice(0,5)))
+      .catch(error =>  setError(error.message));
+  }, [])
+
+  const checkAnswer = (answer, step) => {
+    if (answer === questions[step].correctAnswer) {
+      setScore(score + 1)
     }
   }
 
-  componentDidMount() {
-    fetchQuestions()
-      .then(data => this.setState({ questions: data }));
+  const resetScore = () => {
+    setScore(0)
   }
 
-  render() {
-    return (
+  return (
       <div className="App">
-        <h1>Sex Education</h1>
-        <img src="https://occ-0-2794-2219.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABX_JCq57-TuTQRDPcumA7WlVQcLuflwx5fOmRLhQArm-6Z9fwrXHy1be91iW0nBu5ofCUJKNU0_4vfuSW-rART9C8S9fxgPsSM17DaROhANJbd5N.jpg?r=6e7" alt="sex education series"/>
+        <header>
+          <NavBar />
+          <h1>Sex Education</h1>
+        </header>
+        <Switch>
+          <Route
+           exact path="/"
+           render={() => <Redirect to="/home" /> }
+          />
+          <Route
+           exact path="/home"
+            render={() => {
+              return (
+                <>
+                  <h2>Take the Sexual Health Myth Debunking Quiz!</h2>
+                  <Link to="/quiz">YES!</Link>
+                  <footer>
+                    <Link to="/video">Watch Sex Education series video.</Link>
+                  </footer>
+                </>
+              )
+            }}
+          />
+          <Route
+            exact path="/quiz"
+            render={() => <Quiz questions={ questions } checkAnswer={ checkAnswer } score={ score } resetScore={ resetScore }/>}
+          />
+          <Route
+            exact path="/video"
+            render={() => {
+              return (
+                <>
+                  <iframe width="370" height="200" src="https://www.youtube.com/embed/Xo3Cnfhf9Q8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  <Link to="/home">Back to Home</Link>
+                </>)
+            }}
+          />
+        </Switch>
       </div>
-    );
-  }
-
+  )
 }
 
 export default App;
