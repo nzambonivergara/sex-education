@@ -59,7 +59,3 @@
 .nav-option:hover {
   border-bottom: 3px solid black;
 }
-
-.hidden {
-  display: none;
-}
