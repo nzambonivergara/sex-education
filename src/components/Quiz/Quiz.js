@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Quiz = ({ questions, checkAnswer, score, resetScore }) => {
   const [ userAnswers, setUserAnswers ] = useState([])
-  const [ step, setStep ] = useState(0)
+  const [ questionNumber, setQuestionNumber ] = useState(0)
   const [ buttonDisabled, setButtonDisabled ] = useState(true)
   const [ formDisabled, setFormDisabled ] = useState(false)
 
@@ -12,40 +12,40 @@ const Quiz = ({ questions, checkAnswer, score, resetScore }) => {
     setFormDisabled(true);
     setButtonDisabled(false);
     setUserAnswers([ ...userAnswers, answer ])
-    checkAnswer(answer, step)
+    checkAnswer(answer, questionNumber)
   }
 
   const changeQuestion = (event) => {
     event.preventDefault()
 
-    if (event.target.value === 'next' && userAnswers[step+1] === undefined) {
+    if (event.target.parentNode.value === 'next' && userAnswers[questionNumber + 1] === undefined) {
       setFormDisabled(false);
       setButtonDisabled(true);
-      setStep(step + 1)
-    } else if (event.target.value === 'next' && userAnswers[step+1] !== undefined) {
+      setQuestionNumber(questionNumber + 1)
+    } else if (event.target.parentNode.value === 'next' && userAnswers[questionNumber + 1] !== undefined) {
       setFormDisabled(true);
       setButtonDisabled(false);
-      setStep(step + 1)
-    } else if (event.target.value === 'previous') {
-      setStep(step - 1)
+      setQuestionNumber(questionNumber + 1)
+    } else if (event.target.parentNode.value === 'previous') {
+      setQuestionNumber(questionNumber - 1)
       setFormDisabled(true);
       setButtonDisabled(false);
     }
   }
 
   const showResult = () => {
-    if (userAnswers[step] !== undefined && userAnswers[step] === questions[step].correctAnswer) {
+    if (userAnswers[questionNumber] !== undefined && userAnswers[questionNumber] === questions[questionNumber].correctAnswer) {
       return (
         <>
           <p>✅ Awesome job!</p>
-          <p>{questions[step].fact}</p>
+          <p>{questions[questionNumber].fact}</p>
         </>
       )
-    } else if (userAnswers[step] !== undefined && userAnswers[step] !== questions[step].correctAnswer) {
+    } else if (userAnswers[questionNumber] !== undefined && userAnswers[questionNumber] !== questions[questionNumber].correctAnswer) {
       return (
         <>
           <p>❌ Let’s look at that one again!</p>
-          <p>{questions[step].fact}</p>
+          <p>{questions[questionNumber].fact}</p>
         </>
       )
     }
@@ -54,21 +54,21 @@ const Quiz = ({ questions, checkAnswer, score, resetScore }) => {
   const resetQuiz = () => {
     setButtonDisabled(true);
     setUserAnswers([])
-    setStep(0)
+    setQuestionNumber(0)
     resetScore()
   }
 
   return (
-    <section>
+    <section className="quiz-container">
       <h2>Myth Busting Quiz</h2>
-      { questions[step] ?
+      { questions[questionNumber] ?
         (<form>
-          <h2>{questions[step].question}</h2>
+          <h2>{questions[questionNumber].question}</h2>
           <label>
             <input
               type="radio"
               name="answer"
-              checked= { userAnswers[step] === true }
+              checked= { userAnswers[questionNumber] === true }
               value="true"
               onChange={() => handleChange(true)}
               disabled={formDisabled}
@@ -79,23 +79,35 @@ const Quiz = ({ questions, checkAnswer, score, resetScore }) => {
             <input
               type="radio"
               name="answer"
-              checked= { userAnswers[step] === false }
+              checked= { userAnswers[questionNumber] === false }
               value="false"
               onChange={() => handleChange(false)}
-              disabled={ formDisabled || userAnswers[step] }
+              disabled={ formDisabled || userAnswers[questionNumber] }
             />
             False
           </label>
-          <div>
-            { step > 0 && <button className="" id="previous-button" value="previous" onClick={event => changeQuestion(event)}>Previous</button>}
+          <div className="arrows-container">
             <button
-              className=""
+              className="arrow-button"
+              id="previous-button"
+              value="previous"
+              onClick={event => changeQuestion(event)}
+              disabled={buttonDisabled}
+            >
+              <span className="material-icons">
+                arrow_back
+              </span>
+            </button>
+            <button
+              className="arrow-button"
               id="next-button"
               value="next"
               onClick={event => changeQuestion(event)}
               disabled={buttonDisabled}
             >
-              Next
+              <span className="material-icons">
+                arrow_forward
+              </span>
             </button>
           </div>
           { showResult() }
