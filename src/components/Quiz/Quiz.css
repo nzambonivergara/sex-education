@@ -1,10 +1,56 @@
-.quiz-container {
+.quiz-form {
+  background-color: #F49097;
   padding: 1rem;
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.quiz-title {
+  font-family: 'Lilita One', cursive;
+  font-size: 2rem;
+  margin: 0.8rem;
+}
+
+.inputs-container {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 /* input[type="radio"] {
-  visibility: hidden; */
-/* } */
+  visibility: hidden;
+  height: 0;
+  width: 0;
+} */
+
+.true-input {
+  background-color: #3a526a;
+}
+
+.false-input {
+  background-color: #7e9488;
+}
+
+.true-input,
+.false-input {
+  color: white;
+  padding: 1rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 1rem;
+  text-align: center;
+}
+
+
+input:checked {
+  background: #D3A600;
+}
+
+.result {
+  text-transform: uppercase;
+  font-weight: bold;
+}
 
 .hidden {
   display: none;
