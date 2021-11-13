@@ -60,7 +60,7 @@ const App = () => {
                     <h2 className="did-you-know">Did you know? 🤔</h2>
                     <p className="fact">"{questions.length && questions[step].fact }"</p>
                     <div className="arrows-container">
-                      { step && (
+                      { !!step && (
                         <button
                           className="arrow-button"
                           onClick={() => setStep(step - 1)}
