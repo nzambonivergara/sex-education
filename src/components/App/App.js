@@ -1,6 +1,6 @@
 import { fetchQuestions } from '../../apiCalls';
 import { useState, useEffect } from 'react';
-import { Route, Switch, Link, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import NavBar from '../NavBar/NavBar';
 import Home from '../Home/Home';
 import Quiz from '../Quiz/Quiz';

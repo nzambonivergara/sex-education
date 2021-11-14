@@ -4,8 +4,23 @@
     align-items: center;
 }
 
-.clinic-resource-container {
+.clinic {
   background-image: url(../../assets/quiz-background.png);
+}
+
+.birth-control {
+  background-image: url(../../assets/bc-resource-background.png);
+}
+
+.sti {
+  background-image: url(../../assets/sti-resource-background.png);
+}
+
+.lgbtq {
+  background-image: url(../../assets/lgbt-background.png);
+}
+
+.resource-container {
   background-repeat: no-repeat;
   background-size: cover;
   height: 60vh;
@@ -17,7 +32,9 @@
   margin-top: 5vh;
 }
 
-.clinic-resource-link {
+
+
+.resource-link {
   background-color: #3a526a;
   color: white;
   padding: 1rem;

@@ -18,7 +18,7 @@ const Home = ({ questions, resetScore }) => {
           aria-label="Take the Myth Busting Quiz"
         >
           Take the Myth Busting Quiz
-          <span class="material-icons">
+          <span className="material-icons">
             arrow_right_alt
           </span>
         </Link>
@@ -33,7 +33,7 @@ const Home = ({ questions, resetScore }) => {
             onClick={() => setFactNumber(factNumber - 1)}
             aria-label="Previoius fact"
           >
-            <span class="material-icons">
+            <span className="material-icons">
               arrow_back
             </span>
           </button>
@@ -43,7 +43,7 @@ const Home = ({ questions, resetScore }) => {
             onClick={() => setFactNumber(factNumber + 1)}
             aria-label="Next fact"
           >
-            <span class="material-icons">
+            <span className="material-icons">
               arrow_forward
             </span>
           </button>

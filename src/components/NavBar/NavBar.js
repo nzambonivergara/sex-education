@@ -19,7 +19,6 @@ const NavBar = ({ resetScore }) => {
         className="container"
         id="menu-button"
         onClick={toggleMenu}
-        tabindex="0"
         aria-labelledby="menu-label"
         aria-expanded="false"
         aria-label="Toggle the navigation menu"
