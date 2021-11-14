@@ -2,8 +2,8 @@ import { Link, useLocation } from 'react-router-dom';
 import './NotFound.css';
 
 const NotFound = () => {
-  const location = useLocation();
-  
+  const location = useLocation()
+
   return (
     <div>
       <h3>
@@ -13,7 +13,7 @@ const NotFound = () => {
         Back to Home
       </Link>
     </div>
-  );
+  )
 }
 
 export default NotFound;

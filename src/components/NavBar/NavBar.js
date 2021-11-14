@@ -2,14 +2,15 @@ import { NavLink } from 'react-router-dom';
 import './NavBar.css';
 
 const NavBar = ({ resetScore }) => {
-  const menuButton = document.getElementById('menu-button')
-  const nav = document.getElementById('nav-container')
 
   const toggleMenu = () => {
-    menuButton.classList.toggle("change");
+    const menuButton = document.getElementById('menu-button')
+    const nav = document.getElementById('nav-container')
+
+    menuButton.classList.toggle("change")
     const newMenuOpenStatus = menuButton.classList.contains("change")
-    menuButton.setAttribute("aria-expanded", newMenuOpenStatus);
-    nav.classList.toggle("hidden");
+    menuButton.setAttribute("aria-expanded", newMenuOpenStatus)
+    nav.classList.toggle("hidden")
   }
 
   return (

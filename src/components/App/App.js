@@ -9,15 +9,15 @@ import NotFound from '../NotFound/NotFound';
 import './App.css';
 
 const App = () => {
-  const [ questions, setQuestions ] = useState([])
-  const [ error, setError] = useState('')
-  const [ score, setScore ] = useState(0)
+  const [ questions, setQuestions ] = useState([]);
+  const [ error, setError] = useState('');
+  const [ score, setScore ] = useState(0);
 
 
   useEffect(() => {
     fetchQuestions()
       .then(data => setQuestions(data.slice(0,15)))
-      .catch(error =>  setError(error.message));
+      .catch(error =>  setError(error.message))
   }, [])
 
   const checkAnswer = (answer, questionNumber) => {

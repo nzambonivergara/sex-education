@@ -7,12 +7,6 @@
   align-items: center;
 }
 
-.result {
-  text-transform: uppercase;
-  font-weight: bold;
-  font-family: 'Lilita One', cursive;
-}
-
 .score {
   font-size: 1.5rem;
   margin: 20vh 20vw 15vh;
