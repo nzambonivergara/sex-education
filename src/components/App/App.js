@@ -16,7 +16,7 @@ const App = () => {
 
   useEffect(() => {
     fetchQuestions()
-      .then(data => setQuestions(data.slice(0,15)))
+      .then(data => setQuestions(data))
       .catch(error =>  setError(error.message))
   }, [])
 
