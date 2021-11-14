@@ -1,6 +1,7 @@
 import './Quiz.css';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import QuizResult from '../QuizResult/QuizResult';
 
 const Quiz = ({ questions, checkAnswer, score, resetScore }) => {
   const [ userAnswers, setUserAnswers ] = useState([])
@@ -9,7 +10,6 @@ const Quiz = ({ questions, checkAnswer, score, resetScore }) => {
   const [ formDisabled, setFormDisabled ] = useState(false)
 
   const handleChange = (answer) => {
-    console.log(answer)
     setFormDisabled(true);
     setButtonDisabled(false);
     setUserAnswers([ ...userAnswers, answer ])
@@ -34,7 +34,7 @@ const Quiz = ({ questions, checkAnswer, score, resetScore }) => {
     }
   }
 
-  const showResult = () => {
+  const showCurrentAnswerResult = () => {
     if (userAnswers[questionNumber] !== undefined && userAnswers[questionNumber] === questions[questionNumber].correctAnswer) {
       return (
         <div className="fact-container">
@@ -60,12 +60,12 @@ const Quiz = ({ questions, checkAnswer, score, resetScore }) => {
   }
 
   return (
-    <section className="quiz-container">
+    <main className="quiz-container">
       <h2 className="quiz-title">Myth Busting Quiz</h2>
       { questions[questionNumber] ? (
         <>
           <form className="quiz-form">
-            <h2>{questions[questionNumber].question}</h2>
+            <h3 className="question">{questions[questionNumber].question}</h3>
             <div className="inputs-container">
               <input
                 className="true-input"
@@ -118,21 +118,16 @@ const Quiz = ({ questions, checkAnswer, score, resetScore }) => {
                 </span>
               </button>
             </div>
-            <p>You have completed {userAnswers.length / questions.length * 100}% of the quiz!</p>
+            <p>You have completed {(userAnswers.length / questions.length * 100).toFixed()}% of the quiz!</p>
           </form>
-          { showResult() }
+          { showCurrentAnswerResult() }
         </>
       )
       :
       (
-        <div className="results-container">
-          <h3 className="complete-quiz-message">Excellent! You crushed it.</h3>
-          <p className="score">You got {score / questions.length * 100}% of the questions right!</p>
-          <button className="retake-button" onClick={ resetQuiz }>Retake Quiz</button>
-          <Link className="quiz-link" to="/home">Back to Home</Link>
-        </div>
+        <QuizResult correctAnswersPercentage={score / questions.length * 100} resetQuiz={ resetQuiz }/>
       )}
-    </section>
+    </main>
   )
 }
 
