@@ -32,7 +32,7 @@ const App = () => {
   return (
       <div className="App">
         <header className="header">
-          <NavBar />
+          <NavBar resetScore={ resetScore }/>
           <h1>Sex Education</h1>
         </header>
         <Switch>
@@ -49,7 +49,7 @@ const App = () => {
                     <h2 className="call-to-action-question">
                       Does wearing two condoms offer double protection?
                     </h2>
-                    <Link to="/quiz" className="quiz-link">
+                    <Link to="/quiz" className="quiz-link" onClick={ resetScore }>
                       Take the Myth Busting Quiz
                       <span class="material-icons">
                         arrow_right_alt
@@ -60,37 +60,34 @@ const App = () => {
                     <h2 className="did-you-know">Did you know? 🤔</h2>
                     <p className="fact">"{questions.length && questions[step].fact }"</p>
                     <div className="arrows-container">
-                      { !!step && (
-                        <button
-                          className="arrow-button"
-                          onClick={() => setStep(step - 1)}
-                        >
-                          <span class="material-icons">
-                            arrow_back
-                          </span>
-                        </button>
-                      )}
-                      { step < questions.length - 1 && (
-                        <button
-                          className="arrow-button"
-                          onClick={() => setStep(step + 1)}
-                        >
-                          <span class="material-icons">
-                            arrow_forward
-                          </span>
-                        </button>
-                      )}
+                      <button
+                        className="arrow-button"
+                        disabled={ step ? false : true }
+                        onClick={() => setStep(step - 1)}
+                      >
+                        <span class="material-icons">
+                          arrow_back
+                        </span>
+                      </button>
+                      <button
+                        disabled={ step < questions.length - 1 ? false : true }
+                        className="arrow-button"
+                        onClick={() => setStep(step + 1)}
+                      >
+                        <span class="material-icons">
+                          arrow_forward
+                        </span>
+                      </button>
                     </div>
                   </div>
-                  <form className="submit-question-form">
-                    <h3 className="call-to-action-question">Do you have any sexual health questions?</h3>
-                    <textarea placeholder="Write your question here..."/>
-                    <button className="submit-button">Submit</button>
-                  </form>
+                  {
+                  // <form className="submit-question-form">
+                  //   <h3 className="call-to-action-question">Do you have any sexual health questions?</h3>
+                  //   <textarea placeholder="Write your question here..."/>
+                  //   <button className="submit-button">Submit</button>
+                  // </form>
+                }
                   <footer>
-                    <Link to="/video" className="video-link">
-                      Otis Milburn's Best Sex Ed Avice
-                    </Link>
                     <p>Please note: This app’s content is provided for general informational purposes only, and under no circumstances should be considered a substitute for professional medical advice, diagnosis or treatment from a qualified physician or healthcare provider.</p>
                   </footer>
                 </>
@@ -118,3 +115,7 @@ const App = () => {
 }
 
 export default App;
+
+// // <Link to="/video" className="video-link">
+//   Otis Milburn's Best Sex Ed Avice
+// </Link>

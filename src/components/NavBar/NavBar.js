@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import './NavBar.css';
 
-const NavBar = () => {
+const NavBar = ({ resetScore }) => {
   const menu = document.getElementById('menu')
   const navOptions = document.querySelectorAll('.nav-option')
 
@@ -21,7 +21,10 @@ const NavBar = () => {
         <NavLink to="/home" className="nav-option hidden" onClick={toggleMenu}>
           Home
         </NavLink>
-        <NavLink to="/quiz" className="nav-option hidden" onClick={toggleMenu}>
+        <NavLink to="/quiz" className="nav-option hidden" onClick={() => {
+          toggleMenu()
+          resetScore()
+        }}>
           Quiz
         </NavLink>
         <NavLink to="/resources" className="nav-option hidden" onClick={toggleMenu}>

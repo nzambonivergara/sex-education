@@ -9,9 +9,11 @@ const Quiz = ({ questions, checkAnswer, score, resetScore }) => {
   const [ formDisabled, setFormDisabled ] = useState(false)
 
   const handleChange = (answer) => {
+    console.log(answer)
     setFormDisabled(true);
     setButtonDisabled(false);
     setUserAnswers([ ...userAnswers, answer ])
+    checkAnswer(answer, questionNumber)
   }
 
   const changeQuestion = (event) => {
@@ -65,28 +67,30 @@ const Quiz = ({ questions, checkAnswer, score, resetScore }) => {
           <form className="quiz-form">
             <h2>{questions[questionNumber].question}</h2>
             <div className="inputs-container">
-              <label for="true" className="true-input">
-                <input
-                  type="radio"
-                  name="answer"
-                  checked= { userAnswers[questionNumber] === true }
-                  value="true"
-                  id="true"
-                  onChange={() => handleChange(true)}
-                  disabled={formDisabled}
-                />
+              <input
+                className="true-input"
+                type="radio"
+                name="answer"
+                checked= { userAnswers[questionNumber] === true }
+                value="true"
+                id="true"
+                onChange={() => handleChange(true)}
+                disabled={formDisabled}
+              />
+              <label htmlFor="true" className="true-label">
                 True
               </label>
-              <label for="false" className="false-input">
-                <input
-                  type="radio"
-                  name="answer"
-                  checked= { userAnswers[questionNumber] === false }
-                  value="false"
-                  id="false"
-                  onChange={() => handleChange(false)}
-                  disabled={ formDisabled || userAnswers[questionNumber] }
-                />
+              <input
+                className="false-input"
+                type="radio"
+                name="answer"
+                checked= { userAnswers[questionNumber] === false }
+                value="false"
+                id="false"
+                onChange={() => handleChange(false)}
+                disabled={ formDisabled || userAnswers[questionNumber] }
+              />
+              <label htmlFor="false" className="false-label">
                 False
               </label>
             </div>
@@ -96,7 +100,7 @@ const Quiz = ({ questions, checkAnswer, score, resetScore }) => {
                 id="previous-button"
                 value="previous"
                 onClick={event => changeQuestion(event)}
-                disabled={buttonDisabled}
+                disabled={ questionNumber ? buttonDisabled : true }
               >
                 <span className="material-icons">
                   arrow_back
@@ -114,18 +118,18 @@ const Quiz = ({ questions, checkAnswer, score, resetScore }) => {
                 </span>
               </button>
             </div>
+            <p>You have completed {userAnswers.length / questions.length * 100}% of the quiz!</p>
           </form>
           { showResult() }
-          <p>You have completed {userAnswers.length / questions.length * 100}% of the quiz!</p>
         </>
       )
       :
       (
-        <div>
-          <h3>Amazing job! You completed the quiz.</h3>
-          <p>Your score is {score}/{questions.length}</p>
-          <button onClick={ resetQuiz }>Retake Quiz</button>
-          <Link to="/home">Back to Home</Link>
+        <div className="results-container">
+          <h3 className="complete-quiz-message">Excellent! You crushed it.</h3>
+          <p className="score">You got {score / questions.length * 100}% of the questions right!</p>
+          <button className="retake-button" onClick={ resetQuiz }>Retake Quiz</button>
+          <Link className="quiz-link" to="/home">Back to Home</Link>
         </div>
       )}
     </section>

@@ -18,23 +18,24 @@ h1 {
   font-family: 'Lilita One', cursive;
 }
 
+.active {
+  border-bottom: 3px solid black;
+}
+
 .call-to-action-question {
   margin: 0 1rem;
   font-size: 1.8rem;
 }
 
-.active {
-  border-bottom: 3px solid black;
-}
-
 .fact-container {
   color: #3a526a;
   padding: 1rem;
+  font-size: 1.3rem;
 }
 
 .arrows-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .arrow-button {
@@ -64,6 +65,7 @@ h1 {
   align-items: center;
 }
 
+.retake-button,
 .submit-button,
 .quiz-link {
   background-color: #3a526a;
@@ -76,6 +78,7 @@ h1 {
   font-size: 1.2rem;
 }
 
+.retake-button,
 .submit-button {
   border: 0;
   font-family: 'Arvo', serif;
