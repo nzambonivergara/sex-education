@@ -2,36 +2,46 @@ import { NavLink } from 'react-router-dom';
 import './NavBar.css';
 
 const NavBar = ({ resetScore }) => {
-  const menu = document.getElementById('menu')
-  const navOptions = document.querySelectorAll('.nav-option')
+  const menuButton = document.getElementById('menu-button')
+  const nav = document.getElementById('nav-container')
 
   const toggleMenu = () => {
-    menu.classList.toggle("change");
-    navOptions.forEach(option => option.classList.toggle("hidden"))
+    menuButton.classList.toggle("change");
+    const newMenuOpenStatus = menuButton.classList.contains("change")
+    menuButton.setAttribute("aria-expanded", newMenuOpenStatus);
+    nav.classList.toggle("hidden");
   }
 
   return (
-    <nav className="nav-bar">
-      <div className="container" id="menu" onClick={toggleMenu}>
+    <div className="nav-bar">
+      <button
+        className="container"
+        id="menu-button"
+        onClick={toggleMenu}
+        tabindex="0"
+        aria-labelledby="menu-label"
+        aria-expanded="false"
+        aria-label="Toggle the navigation menu"
+      >
         <div className="bar1"></div>
         <div className="bar2"></div>
         <div className="bar3"></div>
-      </div>
-      <div className="nav-links-container">
-        <NavLink to="/home" className="nav-option hidden" onClick={toggleMenu}>
+      </button>
+      <nav className="nav-links-container hidden" id="nav-container" aria-label="Main menu">
+        <NavLink to="/home" className="nav-option" onClick={toggleMenu}>
           Home
         </NavLink>
-        <NavLink to="/quiz" className="nav-option hidden" onClick={() => {
+        <NavLink to="/quiz" className="nav-option" onClick={() => {
           toggleMenu()
           resetScore()
         }}>
           Quiz
         </NavLink>
-        <NavLink to="/resources" className="nav-option hidden" onClick={toggleMenu}>
+        <NavLink to="/resources" className="nav-option" onClick={toggleMenu}>
           Resources
         </NavLink>
-      </div>
-    </nav>
+      </nav>
+    </div>
   )
 }
 
