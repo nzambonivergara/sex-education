@@ -1,0 +1,28 @@
+.results-container {
+  background-image: url(../../assets/results-background.gif);
+  background-size: cover;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.score {
+  font-size: 1.5rem;
+  margin: 20vh 20vw 15vh;
+  border-radius: 5px;
+  background-color: #7e9488;
+  padding: 0.5rem;
+}
+
+.complete-quiz-message {
+  font-size: 1.8rem;
+  margin: 0 30vw;
+}
+
+.retake-button {
+  margin-bottom: 5vh;
+  border: 0;
+  font-family: 'Arvo', serif;
+  text-transform: uppercase;
+}

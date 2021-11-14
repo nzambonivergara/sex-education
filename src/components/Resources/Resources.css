@@ -1,0 +1,46 @@
+.resources-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.clinic {
+  background-image: url(../../assets/quiz-background.png);
+}
+
+.birth-control {
+  background-image: url(../../assets/bc-resource-background.png);
+}
+
+.sti {
+  background-image: url(../../assets/sti-resource-background.png);
+}
+
+.lgbtq {
+  background-image: url(../../assets/lgbt-background.png);
+}
+
+.resource-container {
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 60vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 5vh;
+}
+
+
+
+.resource-link {
+  background-color: #3a526a;
+  color: white;
+  padding: 1rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
