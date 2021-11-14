@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import './NavBar.css';
 
-const NavBar = () => {
+const NavBar = ({ resetScore }) => {
   const menu = document.getElementById('menu')
   const navOptions = document.querySelectorAll('.nav-option')
 
@@ -12,16 +12,19 @@ const NavBar = () => {
 
   return (
     <nav className="nav-bar">
-      <div class="container" id="menu" onClick={toggleMenu}>
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
+      <div className="container" id="menu" onClick={toggleMenu}>
+        <div className="bar1"></div>
+        <div className="bar2"></div>
+        <div className="bar3"></div>
       </div>
       <div className="nav-links-container">
         <NavLink to="/home" className="nav-option hidden" onClick={toggleMenu}>
           Home
         </NavLink>
-        <NavLink to="/quiz" className="nav-option hidden" onClick={toggleMenu}>
+        <NavLink to="/quiz" className="nav-option hidden" onClick={() => {
+          toggleMenu()
+          resetScore()
+        }}>
           Quiz
         </NavLink>
         <NavLink to="/resources" className="nav-option hidden" onClick={toggleMenu}>

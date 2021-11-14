@@ -1,6 +1,6 @@
 import { fetchQuestions } from '../../apiCalls';
 import { useState, useEffect } from 'react';
-import { Route, Switch, Link, NavLink, Redirect } from 'react-router-dom';
+import { Route, Switch, Link, Redirect } from 'react-router-dom';
 import NavBar from '../NavBar/NavBar';
 import Quiz from '../Quiz/Quiz';
 import './App.css';
@@ -8,11 +8,14 @@ import './App.css';
 const App = () => {
   const [ questions, setQuestions ] = useState([])
   const [ error, setError] = useState('')
-  const [ score, setScore ] = useState(0);
+  const [ score, setScore ] = useState(0)
+  const [ step, setStep ] = useState(0)
 
   useEffect(() => {
     fetchQuestions()
-      .then(data => setQuestions(data.slice(0,5)))
+      .then(data => {
+        setQuestions(data.slice(0,5))
+      })
       .catch(error =>  setError(error.message));
   }, [])
 
@@ -28,8 +31,8 @@ const App = () => {
 
   return (
       <div className="App">
-        <header>
-          <NavBar />
+        <header className="header">
+          <NavBar resetScore={ resetScore }/>
           <h1>Sex Education</h1>
         </header>
         <Switch>
@@ -42,10 +45,50 @@ const App = () => {
             render={() => {
               return (
                 <>
-                  <h2>Take the Sexual Health Myth Debunking Quiz!</h2>
-                  <Link to="/quiz">YES!</Link>
+                  <div className="quiz-call-to-action">
+                    <h2 className="call-to-action-question">
+                      Does wearing two condoms offer double protection?
+                    </h2>
+                    <Link to="/quiz" className="quiz-link" onClick={ resetScore }>
+                      Take the Myth Busting Quiz
+                      <span class="material-icons">
+                        arrow_right_alt
+                      </span>
+                    </Link>
+                  </div>
+                  <div className="fact-container">
+                    <h2 className="did-you-know">Did you know? 🤔</h2>
+                    <p className="fact">"{questions.length && questions[step].fact }"</p>
+                    <div className="arrows-container">
+                      <button
+                        className="arrow-button"
+                        disabled={ step ? false : true }
+                        onClick={() => setStep(step - 1)}
+                      >
+                        <span class="material-icons">
+                          arrow_back
+                        </span>
+                      </button>
+                      <button
+                        disabled={ step < questions.length - 1 ? false : true }
+                        className="arrow-button"
+                        onClick={() => setStep(step + 1)}
+                      >
+                        <span class="material-icons">
+                          arrow_forward
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                  {
+                  // <form className="submit-question-form">
+                  //   <h3 className="call-to-action-question">Do you have any sexual health questions?</h3>
+                  //   <textarea placeholder="Write your question here..."/>
+                  //   <button className="submit-button">Submit</button>
+                  // </form>
+                }
                   <footer>
-                    <Link to="/video">Watch Sex Education series video.</Link>
+                    <p>Please note: This app’s content is provided for general informational purposes only, and under no circumstances should be considered a substitute for professional medical advice, diagnosis or treatment from a qualified physician or healthcare provider.</p>
                   </footer>
                 </>
               )
@@ -66,8 +109,13 @@ const App = () => {
             }}
           />
         </Switch>
+        { error && <h2>{error.message}</h2>}
       </div>
   )
 }
 
 export default App;
+
+// // <Link to="/video" className="video-link">
+//   Otis Milburn's Best Sex Ed Avice
+// </Link>

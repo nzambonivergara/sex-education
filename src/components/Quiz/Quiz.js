@@ -4,49 +4,50 @@ import { Link } from 'react-router-dom';
 
 const Quiz = ({ questions, checkAnswer, score, resetScore }) => {
   const [ userAnswers, setUserAnswers ] = useState([])
-  const [ step, setStep ] = useState(0)
+  const [ questionNumber, setQuestionNumber ] = useState(0)
   const [ buttonDisabled, setButtonDisabled ] = useState(true)
   const [ formDisabled, setFormDisabled ] = useState(false)
 
   const handleChange = (answer) => {
+    console.log(answer)
     setFormDisabled(true);
     setButtonDisabled(false);
     setUserAnswers([ ...userAnswers, answer ])
-    checkAnswer(answer, step)
+    checkAnswer(answer, questionNumber)
   }
 
   const changeQuestion = (event) => {
     event.preventDefault()
 
-    if (event.target.value === 'next' && userAnswers[step+1] === undefined) {
+    if (event.target.parentNode.value === 'next' && userAnswers[questionNumber + 1] === undefined) {
       setFormDisabled(false);
       setButtonDisabled(true);
-      setStep(step + 1)
-    } else if (event.target.value === 'next' && userAnswers[step+1] !== undefined) {
+      setQuestionNumber(questionNumber + 1)
+    } else if (event.target.parentNode.value === 'next' && userAnswers[questionNumber + 1] !== undefined) {
       setFormDisabled(true);
       setButtonDisabled(false);
-      setStep(step + 1)
-    } else if (event.target.value === 'previous') {
-      setStep(step - 1)
+      setQuestionNumber(questionNumber + 1)
+    } else if (event.target.parentNode.value === 'previous') {
+      setQuestionNumber(questionNumber - 1)
       setFormDisabled(true);
       setButtonDisabled(false);
     }
   }
 
   const showResult = () => {
-    if (userAnswers[step] !== undefined && userAnswers[step] === questions[step].correctAnswer) {
+    if (userAnswers[questionNumber] !== undefined && userAnswers[questionNumber] === questions[questionNumber].correctAnswer) {
       return (
-        <>
-          <p>✅ Awesome job!</p>
-          <p>{questions[step].fact}</p>
-        </>
+        <div className="fact-container">
+          <p className="result">✅ Awesome job!</p>
+          <p>{questions[questionNumber].fact}</p>
+        </div>
       )
-    } else if (userAnswers[step] !== undefined && userAnswers[step] !== questions[step].correctAnswer) {
+    } else if (userAnswers[questionNumber] !== undefined && userAnswers[questionNumber] !== questions[questionNumber].correctAnswer) {
       return (
-        <>
-          <p>❌ Let’s look at that one again!</p>
-          <p>{questions[step].fact}</p>
-        </>
+        <div className="fact-container">
+          <p className="result">❌ Let’s look at that one again!</p>
+          <p>{questions[questionNumber].fact}</p>
+        </div>
       )
     }
   }
@@ -54,61 +55,81 @@ const Quiz = ({ questions, checkAnswer, score, resetScore }) => {
   const resetQuiz = () => {
     setButtonDisabled(true);
     setUserAnswers([])
-    setStep(0)
+    setQuestionNumber(0)
     resetScore()
   }
 
   return (
-    <section>
-      <h2>Myth Busting Quiz</h2>
-      { questions[step] ?
-        (<form>
-          <h2>{questions[step].question}</h2>
-          <label>
-            <input
-              type="radio"
-              name="answer"
-              checked= { userAnswers[step] === true }
-              value="true"
-              onChange={() => handleChange(true)}
-              disabled={formDisabled}
-            />
-            True
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="answer"
-              checked= { userAnswers[step] === false }
-              value="false"
-              onChange={() => handleChange(false)}
-              disabled={ formDisabled || userAnswers[step] }
-            />
-            False
-          </label>
-          <div>
-            { step > 0 && <button className="" id="previous-button" value="previous" onClick={event => changeQuestion(event)}>Previous</button>}
-            <button
-              className=""
-              id="next-button"
-              value="next"
-              onClick={event => changeQuestion(event)}
-              disabled={buttonDisabled}
-            >
-              Next
-            </button>
-          </div>
+    <section className="quiz-container">
+      <h2 className="quiz-title">Myth Busting Quiz</h2>
+      { questions[questionNumber] ? (
+        <>
+          <form className="quiz-form">
+            <h2>{questions[questionNumber].question}</h2>
+            <div className="inputs-container">
+              <input
+                className="true-input"
+                type="radio"
+                name="answer"
+                checked= { userAnswers[questionNumber] === true }
+                value="true"
+                id="true"
+                onChange={() => handleChange(true)}
+                disabled={formDisabled}
+              />
+              <label htmlFor="true" className="true-label">
+                True
+              </label>
+              <input
+                className="false-input"
+                type="radio"
+                name="answer"
+                checked= { userAnswers[questionNumber] === false }
+                value="false"
+                id="false"
+                onChange={() => handleChange(false)}
+                disabled={ formDisabled || userAnswers[questionNumber] }
+              />
+              <label htmlFor="false" className="false-label">
+                False
+              </label>
+            </div>
+            <div className="arrows-container">
+              <button
+                className="arrow-button"
+                id="previous-button"
+                value="previous"
+                onClick={event => changeQuestion(event)}
+                disabled={ questionNumber ? buttonDisabled : true }
+              >
+                <span className="material-icons">
+                  arrow_back
+                </span>
+              </button>
+              <button
+                className="arrow-button"
+                id="next-button"
+                value="next"
+                onClick={event => changeQuestion(event)}
+                disabled={buttonDisabled}
+              >
+                <span className="material-icons">
+                  arrow_forward
+                </span>
+              </button>
+            </div>
+            <p>You have completed {userAnswers.length / questions.length * 100}% of the quiz!</p>
+          </form>
           { showResult() }
-          <p>You have completed {userAnswers.length / questions.length * 100}% of the quiz!</p>
-        </form>
+        </>
       )
       :
       (
-        <div>
-          <h3>Amazing job! You completed the quiz.</h3>
-          <p>Your score is {score}/{questions.length}</p>
-          <button onClick={ resetQuiz }>Retake Quiz</button>
-          <Link to="/home">Back to Home</Link>
+        <div className="results-container">
+          <h3 className="complete-quiz-message">Excellent! You crushed it.</h3>
+          <p className="score">You got {score / questions.length * 100}% of the questions right!</p>
+          <button className="retake-button" onClick={ resetQuiz }>Retake Quiz</button>
+          <Link className="quiz-link" to="/home">Back to Home</Link>
         </div>
       )}
     </section>
