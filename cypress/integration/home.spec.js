@@ -1,7 +1,11 @@
 describe('Home View', () => {
   beforeEach(() => {
+    cy.fixture('questions-data').then((json) => {
+      cy.intercept('GET', 'http://localhost:3000/api/v1/questions', {
+        statusCode: 201,
+        body: json})
+    })
     cy.visit('/')
-      .intercept('http://localhost:3000/api/v1/questions', {fixtures: 'questions-data.json'})
   })
 
   it('Should display the title of the page', () => {
@@ -11,26 +15,28 @@ describe('Home View', () => {
   it('Should have a button to access the navigation bar', () => {
     cy.get('#menu-button').click()
       .should('have.attr', 'aria-expanded', 'true')
-      .click()
+      .get('.nav-links-container').should('be.visible')
+      .get('#menu-button').click()
       .should('have.attr', 'aria-expanded', 'false')
+      .get('.nav-links-container').should('not.be.visible')
   })
 
   it('Should have a section with a call to action to take the quiz', () => {
     cy.get('.call-to-action-question').contains('Does wearing two condoms offer double protection?')
       .get('.quiz-link').contains('Take the Myth Busting Quiz')
       .click()
-      .url().includes('/quiz')
+      .url().should('include', '/quiz')
   })
 
   it('Should have a section where the user can read all facts', () => {
     cy.get('.fact-container')
       .contains('Did you know? 🤔')
       .get('.fact')
-      .contains('"A lot of people pass on STIs to others without even knowing. STIs can be spread with symptoms or without. The WHO explains that “[t]he majority of STIs have no symptoms or only mild symptoms that may not be recognized as an STI.” It is important to be tested regularly and to use a condom to prevent STIs as much as possible."')
+      .contains('"You cannot tell if someone is gay, remember, ones gender expression is not representative of their identiy, sexual oreintation, or more."')
       .get('.arrow-button').eq(1)
       .click()
       .get('.fact')
-      .contains('"Emergency contraception will not impact an existing pregnancy and has no impact if fertilization has already occurred; it merely prevents pregnancy from occurring. Medication abortion terminates an already established pregnancy."')
+      .contains('"There is no way to know by looking at someone (even if it\'s up close and personal!) whether they have an STI or not. The only way to know for sure if a person has an STI is for that person to get tested."')
   })
 
   it('Should have a footer with the page disclaimer', () => {
