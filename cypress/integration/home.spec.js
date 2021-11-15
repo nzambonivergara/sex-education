@@ -44,3 +44,29 @@ describe('Home View', () => {
       .contains('Please note: This app’s content is provided for general informational purposes only, and under no circumstances should be considered a substitute for professional medical advice, diagnosis or treatment from a qualified physician or healthcare provider.')
   })
 })
+
+describe('Error handling', () => {
+  it('Should display an error encouraging the user to try again later if the fetch request fails', () => {
+
+    cy.intercept('GET', 'http://localhost:3000/api/v1/questions', {
+        statusCode: 500,
+        body: {
+          message: 'Failed to fetch'
+        }
+    })
+
+      cy.visit('/').contains('Oops, something went wrong! Try again later!')
+    })
+
+  it('Should display an error if the endpoint of the url is not valid', () => {
+    cy.fixture('questions-data').then((json) => {
+      cy.intercept('GET', 'http://localhost:3000/api/v1/questions', {
+        statusCode: 201,
+        body: json})
+    })
+    cy.visit('/potatoes')
+
+    cy.get('h3').contains('No match for /potatoes')
+      .get('a').contains('Back to Home')
+  })
+})
