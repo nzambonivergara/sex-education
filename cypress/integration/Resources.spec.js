@@ -18,26 +18,26 @@ describe('Resources Page', () => {
 
   it('Should have a link to search for health clinics', () => {
     cy.get('a').eq(3)
-    .should('have.attr', 'href', 'https://www.bedsider.org/where_to_get_it')
-    .contains('Find a Health Center Here!')
+      .should('have.attr', 'href', 'https://www.bedsider.org/where_to_get_it')
+      .contains('Find a Health Center Here!')
   })
 
   it('Should have a link to learn more about birth control', () => {
     cy.get('a').eq(4)
-    .should('have.attr', 'href', 'https://www.bedsider.org/birth-control')
-    .contains('Learn More About Birth Control!')
+      .should('have.attr', 'href', 'https://www.bedsider.org/birth-control')
+      .contains('Learn More About Birth Control!')
   })
 
   it('Should have a link to learn more about STIs', () => {
     cy.get('a').eq(5)
-    .should('have.attr', 'href', 'https://www.teensource.org/std')
-    .contains('Learn More About STIs!')
+      .should('have.attr', 'href', 'https://www.teensource.org/std')
+      .contains('Learn More About STIs!')
   })
 
   it('Should have a link to learn more about sexual orientation and gender', () => {
     cy.get('a').eq(6)
-    .should('have.attr', 'href', 'https://www.teensource.org/lgbtq')
-    .contains('Sexual Orientation & Gender!')
+      .should('have.attr', 'href', 'https://www.teensource.org/lgbtq')
+      .contains('Sexual Orientation & Gender!')
   })
 
   it('Should have a link to go back to home', () => {
