@@ -1,9 +1,35 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import './Home.css';
 
-const Home = ({ questions, resetScore }) => {
+const Home = ({ allFacts, resetScore, savedFacts, setSavedFacts  }) => {
   const [ factNumber, setFactNumber ] = useState(0);
+
+  const removeSavedFact = (fact) => {
+    const filteredFacts = savedFacts.filter(item => item !== fact)
+    setSavedFacts([ ...filteredFacts ])
+  }
+
+  const renderSaveButton = () => {
+    if (!savedFacts.includes(allFacts[factNumber])) {
+      return (
+        <button aria-label="Save fact" onClick={() => setSavedFacts([ ...savedFacts, allFacts[factNumber] ])}>
+          <span class="material-icons">
+            favorite_border
+          </span>
+        </button>
+      )
+    } else {
+      return (
+        <button aria-label="Remove from saved facts" onClick={() => removeSavedFact(allFacts[factNumber])}>
+          <span class="material-icons">
+            favorite
+          </span>
+        </button>
+      )
+    }
+  }
 
   return (
     <main>
@@ -25,7 +51,7 @@ const Home = ({ questions, resetScore }) => {
       </section>
       <section className="fact-container">
         <h2 className="did-you-know">Did you know? 🤔</h2>
-        <p className="fact">"{questions.length && questions[factNumber].fact }"</p>
+        <p className="fact">"{ allFacts.length && allFacts[factNumber] }"</p>
         <div className="arrows-container">
           <button
             className="arrow-button"
@@ -37,8 +63,9 @@ const Home = ({ questions, resetScore }) => {
               arrow_back
             </span>
           </button>
+          { renderSaveButton() }
           <button
-            disabled={ factNumber < questions.length - 1 ? false : true }
+            disabled={ factNumber < allFacts.length - 1 ? false : true }
             className="arrow-button"
             onClick={() => setFactNumber(factNumber + 1)}
             aria-label="Next fact"
@@ -54,3 +81,10 @@ const Home = ({ questions, resetScore }) => {
 }
 
 export default Home;
+
+Home.propTypes = {
+  allFacts: PropTypes.arrayOf(PropTypes.string),
+  resetScore: PropTypes.func,
+  savedFacts: PropTypes.arrayOf(PropTypes.string),
+  setSavedFacts: PropTypes.func
+};
