@@ -14,16 +14,16 @@ const Home = ({ allFacts, resetScore, savedFacts, setSavedFacts  }) => {
   const renderSaveButton = () => {
     if (!savedFacts.includes(allFacts[factNumber])) {
       return (
-        <button aria-label="Save fact" onClick={() => setSavedFacts([ ...savedFacts, allFacts[factNumber] ])}>
-          <span class="material-icons">
+        <button id="save-fact-button" aria-label="Save fact" onClick={() => setSavedFacts([ ...savedFacts, allFacts[factNumber] ])}>
+          <span className="material-icons">
             favorite_border
           </span>
         </button>
       )
     } else {
       return (
-        <button aria-label="Remove from saved facts" onClick={() => removeSavedFact(allFacts[factNumber])}>
-          <span class="material-icons">
+        <button id="remove-fact-button" aria-label="Remove from saved facts" onClick={() => removeSavedFact(allFacts[factNumber])}>
+          <span className="material-icons">
             favorite
           </span>
         </button>

@@ -5,7 +5,7 @@ const Resources = () => {
   return (
     <main className="resources-container">
       <h2 className="resources-title">Resources</h2>
-      <iframe width="370" height="200" src="https://www.youtube.com/embed/Xo3Cnfhf9Q8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe width="370" height="200" src="https://www.youtube.com/embed/Xo3Cnfhf9Q8" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
       <div className="clinic resource-container">
         <a className="resource-link" href="https://www.bedsider.org/where_to_get_it">
           Find a Health Center Here!
