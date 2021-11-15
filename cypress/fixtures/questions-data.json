@@ -1,0 +1,4 @@
+[
+  {"id":1,"question":"You can't tell when someone is gay.","answers":[true,false],"correctAnswer":true,"fact":"You cannot tell if someone is gay, remember, ones gender expression is not representative of their identiy, sexual oreintation, or more."},
+  {"id":2,"question":"You can tell that someone has an STI by looking at them.","answers":[true,false],"correctAnswer":false,"fact":"There is no way to know by looking at someone (even if it's up close and personal!) whether they have an STI or not. The only way to know for sure if a person has an STI is for that person to get tested."}
+]
