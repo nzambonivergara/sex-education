@@ -15,7 +15,7 @@ const Resources = () => {
         </a>
       </div>
       <div className="birth-control resource-container">
-        <a className="resource-link" href="https://www.bedsider.org/where_to_get_it">
+        <a className="resource-link" href="https://www.bedsider.org/birth-control">
           Learn More About Birth Control!
           <span className="material-icons">
             arrow_right_alt
