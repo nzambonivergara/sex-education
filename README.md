@@ -8,7 +8,9 @@ Explore the <a href="https://sex-education.surge.sh/home">deployed site</a>.
 
 ## Snapshot of the Application
 
-![sex-ed](https://user-images.githubusercontent.com/83611094/141859714-3460f1c8-25d1-4db0-8797-34afd75b201c.gif)
+![home-page](https://user-images.githubusercontent.com/83611094/141865684-18b0b3b9-1d8b-419e-b731-4ae43ceaf617.gif)
+
+![recording (18)](https://user-images.githubusercontent.com/83611094/141866254-a8d38ad6-f744-437c-a01f-11982c7f9fd1.gif)
 
 ## Technologies
 
