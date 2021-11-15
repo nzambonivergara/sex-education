@@ -1,5 +1,6 @@
 import './QuizForm.css';
-import { useState } from 'react'
+import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 const QuizForm = ({ questions, checkAnswer, questionNumber, setQuestionNumber, userAnswers, setUserAnswers }) => {
   const [ buttonDisabled, setButtonDisabled ] = useState(true);
@@ -93,3 +94,18 @@ const QuizForm = ({ questions, checkAnswer, questionNumber, setQuestionNumber, u
 }
 
 export default QuizForm;
+
+QuizForm.propTypes = {
+  questions: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    question: PropTypes.string,
+    answers:  PropTypes.arrayOf(PropTypes.bool),
+    correctAnswer: PropTypes.bool,
+    fact: PropTypes.string
+  })),
+  checkAnswer: PropTypes.func,
+  questionNumber: PropTypes.number,
+  setQuestionNumber: PropTypes.func,
+  userAnswers: PropTypes.arrayOf(PropTypes.bool),
+  setUserAnswers: PropTypes.func
+};

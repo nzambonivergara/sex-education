@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import './QuizResult.css';
+import PropTypes from 'prop-types';
 
 const QuizResult = ({ correctAnswersPercentage, resetQuiz }) => {
   return (
@@ -13,3 +14,8 @@ const QuizResult = ({ correctAnswersPercentage, resetQuiz }) => {
 }
 
 export default QuizResult;
+
+QuizResult.propTypes = {
+  correctAnswersPercentage: PropTypes.number,
+  resetQuiz: PropTypes.func
+};

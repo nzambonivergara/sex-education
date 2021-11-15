@@ -8,6 +8,10 @@
 
 .header {
   background-color: #EFEFEF;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 h1 {

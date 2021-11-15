@@ -2,6 +2,7 @@ import './Quiz.css';
 import { useState } from 'react';
 import QuizResult from '../QuizResult/QuizResult';
 import QuizForm from '../QuizForm/QuizForm';
+import PropTypes from 'prop-types';
 
 const Quiz = ({ questions, checkAnswer, score, resetScore }) => {
   const [ questionNumber, setQuestionNumber ] = useState(0);
@@ -60,3 +61,16 @@ const Quiz = ({ questions, checkAnswer, score, resetScore }) => {
 }
 
 export default Quiz;
+
+Quiz.propTypes = {
+  questions: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    question: PropTypes.string,
+    answers:  PropTypes.arrayOf(PropTypes.bool),
+    correctAnswer: PropTypes.bool,
+    fact: PropTypes.string
+  })),
+  checkAnswer: PropTypes.func,
+  resetScore: PropTypes.func,
+  score: PropTypes.number
+};
