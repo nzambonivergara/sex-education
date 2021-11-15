@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/sex-education/static/css/main.7eb7174c.chunk.css",
+    "main.js": "/sex-education/static/js/main.31d5ea0c.chunk.js",
+    "main.js.map": "/sex-education/static/js/main.31d5ea0c.chunk.js.map",
+    "runtime-main.js": "/sex-education/static/js/runtime-main.784c03d4.js",
+    "runtime-main.js.map": "/sex-education/static/js/runtime-main.784c03d4.js.map",
+    "static/js/2.778cbc3a.chunk.js": "/sex-education/static/js/2.778cbc3a.chunk.js",
+    "static/js/2.778cbc3a.chunk.js.map": "/sex-education/static/js/2.778cbc3a.chunk.js.map",
+    "static/js/3.923f948d.chunk.js": "/sex-education/static/js/3.923f948d.chunk.js",
+    "static/js/3.923f948d.chunk.js.map": "/sex-education/static/js/3.923f948d.chunk.js.map",
+    "index.html": "/sex-education/index.html",
+    "static/css/main.7eb7174c.chunk.css.map": "/sex-education/static/css/main.7eb7174c.chunk.css.map",
+    "static/js/2.778cbc3a.chunk.js.LICENSE.txt": "/sex-education/static/js/2.778cbc3a.chunk.js.LICENSE.txt",
+    "static/media/Resources.css": "/sex-education/static/media/sti-resource-background.faa4d5d1.png",
+    "static/media/NavBar.css": "/sex-education/static/media/condom-nav.a7ceb13e.png",
+    "static/media/QuizResult.css": "/sex-education/static/media/results-background.e050853e.gif"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.784c03d4.js",
+    "static/js/2.778cbc3a.chunk.js",
+    "static/css/main.7eb7174c.chunk.css",
+    "static/js/main.31d5ea0c.chunk.js"
+  ]
+}
