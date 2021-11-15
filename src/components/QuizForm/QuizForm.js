@@ -68,6 +68,7 @@ const QuizForm = ({ questions, checkAnswer, questionNumber, setQuestionNumber, u
           value="previous"
           onClick={ event => changeQuestion(event) }
           disabled={ questionNumber ? buttonDisabled : true }
+          aria-label="Previous question"
         >
           <span className="material-icons">
             arrow_back
@@ -79,6 +80,7 @@ const QuizForm = ({ questions, checkAnswer, questionNumber, setQuestionNumber, u
           value="next"
           onClick={ event => changeQuestion(event) }
           disabled={buttonDisabled}
+          aria-label="Next question"
         >
           <span className="material-icons">
             arrow_forward
