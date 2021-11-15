@@ -1,4 +1,5 @@
 import './SavedFacts.css';
+import PropTypes from 'prop-types';
 
 const SavedFacts = ({ savedFacts }) => {
   const factParagraphs = savedFacts.map((fact, i) => {
@@ -14,3 +15,7 @@ const SavedFacts = ({ savedFacts }) => {
 }
 
 export default SavedFacts;
+
+SavedFacts.propTypes = {
+  savedFacts: PropTypes.arrayOf(PropTypes.string)
+};

@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import './NavBar.css';
+import PropTypes from 'prop-types';
 
 const NavBar = ({ resetScore }) => {
 
@@ -46,3 +47,7 @@ const NavBar = ({ resetScore }) => {
 }
 
 export default NavBar;
+
+NavBar.propTypes = {
+  resetScore: PropTypes.func
+};
