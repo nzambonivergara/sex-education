@@ -1,7 +1,7 @@
 describe('Home View', () => {
   beforeEach(() => {
     cy.fixture('questions-data').then((json) => {
-      cy.intercept('GET', 'http://localhost:3000/api/v1/questions', {
+      cy.intercept('GET', 'https://sexual-health-api.herokuapp.com/api/v1/questions', {
         statusCode: 201,
         body: json})
     })
@@ -48,7 +48,7 @@ describe('Home View', () => {
 describe('Error handling', () => {
   it('Should display an error encouraging the user to try again later if the fetch request fails', () => {
 
-    cy.intercept('GET', 'http://localhost:3000/api/v1/questions', {
+    cy.intercept('GET', 'https://sexual-health-api.herokuapp.com/api/v1/questions', {
         statusCode: 500,
         body: {
           message: 'Failed to fetch'
@@ -60,7 +60,7 @@ describe('Error handling', () => {
 
   it('Should display an error if the endpoint of the url is not valid', () => {
     cy.fixture('questions-data').then((json) => {
-      cy.intercept('GET', 'http://localhost:3000/api/v1/questions', {
+      cy.intercept('GET', 'https://sexual-health-api.herokuapp.com/api/v1/questions', {
         statusCode: 201,
         body: json})
     })

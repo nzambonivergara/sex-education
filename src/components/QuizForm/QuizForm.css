@@ -42,6 +42,13 @@ input[type=radio] {
   border: 5px solid transparent;
 }
 
+.true-label:hover,
+.false-label:hover {
+  transform: scale(1.25);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 input[type="radio"]:checked + label {
   border: 5px solid white;
 }
