@@ -4,7 +4,7 @@
 
 A React built sexual health education application for teens. The application includes a Myth Busting Quiz, a 'Did you know?' section where users can save interesting facts, and a resources page. This application was built with a mobile design first, but the design is responsive and can be accessed in all screen sizes.
 
-Visit our <a href="https://sex-education.surge.sh/home">deployed site</a>.
+Explore the <a href="https://sex-education.surge.sh/home">deployed site</a>.
 
 ## Snapshot of the Application
 
@@ -34,6 +34,28 @@ Visit our <a href="https://sex-education.surge.sh/home">deployed site</a>.
          <td><img src="https://www.freecodecamp.org/news/content/images/size/w2000/2020/08/wall-2.jpeg" alt="Heroku" width="100" height="auto" /></td>
     </tr>
 </table>
+
+## Set Up
+
+Explore the <a href="https://sex-education.surge.sh/home">deployed site</a>.
+
+### Backend Set Up
+
+1. Go to this [repository](https://github.com/nzambonivergara/sexual-health-api).
+2. Follow Set Up instructions.
+
+### Frontend Set Up
+
+1. Clone down this repository.
+  ```
+  git clone git@github.com:nzambonivergara/sex-education.git
+  ```
+2. In your terminal, run:
+  ```
+  npm install
+  npm start
+  ```
+4. Explore the website.
 
 ## Wins
 
