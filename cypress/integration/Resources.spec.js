@@ -1,7 +1,7 @@
 describe('Resources Page', () => {
   beforeEach(() => {
     cy.fixture('questions-data').then((json) => {
-      cy.intercept('GET', 'http://localhost:3000/api/v1/questions', {
+      cy.intercept('GET', 'https://sexual-health-api.herokuapp.com/api/v1/questions', {
         statusCode: 201,
         body: json})
     })
