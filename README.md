@@ -8,7 +8,7 @@ Explore the <a href="https://sex-education.surge.sh/home">deployed site</a>.
 
 ## Snapshot of the Application
 
-
+<iframe src="https://giphy.com/embed/bWdSXUqN3ORWrIpdM4" width="272" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/bWdSXUqN3ORWrIpdM4">via GIPHY</a></p>
 
 ## Technologies
 
