@@ -4,7 +4,7 @@
 
 A React built sexual health education application for teens. The application includes a Myth Busting Quiz, a 'Did you know?' section where users can save interesting facts, and a resources page. This application was built with a mobile design first, but the design is responsive and can be accessed in all screen sizes.
 
-Explore the <a href="https://sex-education.surge.sh/home">deployed site</a>.
+Explore the <a href="https://sex-education.surge.sh">deployed site</a>.
 
 ## Snapshot of the Application
 
