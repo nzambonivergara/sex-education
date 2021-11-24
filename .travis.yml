@@ -1,6 +1,12 @@
 language: node_js
 node_js:
   - "node"
-  
+
 notifications:
   email: false
+
+deploy:
+  provider: surge
+  project: ./static/
+  domain: http://sex-education.surge.sh
+  cleanup: false
