@@ -6,6 +6,8 @@ A React built sexual health education application for teens. The application inc
 
 Explore the <a href="https://sex-education.surge.sh">deployed site</a>.
 
+[![Build Status](https://app.travis-ci.com/nzambonivergara/sex-education.svg?branch=main)](https://app.travis-ci.com/nzambonivergara/sex-education)
+
 ## Snapshot of the Application
 
 ![home-page](https://user-images.githubusercontent.com/83611094/141865684-18b0b3b9-1d8b-419e-b731-4ae43ceaf617.gif)

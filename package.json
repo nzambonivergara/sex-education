@@ -13,10 +13,10 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "export NODE_OPTIONS=--openssl-legacy-provider; react-scripts start",
-    "build": "export NODE_OPTIONS=--openssl-legacy-provider; react-scripts build",
-    "test": "export NODE_OPTIONS=--openssl-legacy-provider; start-server-and-test start http-get://localhost:3000 cy:run",
-    "eject": "export NODE_OPTIONS=--openssl-legacy-provider; react-scripts eject",
+    "start": "react-scripts start",
+    "build": "export NODE_OPTIONS=--openssl-legacy-provider && react-scripts build",
+    "test": "export NODE_OPTIONS=--openssl-legacy-provider && start-server-and-test start http-get://localhost:3000 cy:run",
+    "eject": "export NODE_OPTIONS=--openssl-legacy-provider && react-scripts eject",
     "cypress": "./node_modules/.bin/cypress open",
     "cy:run": "cypress run"
   },
