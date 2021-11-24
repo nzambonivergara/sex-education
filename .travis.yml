@@ -10,7 +10,7 @@ cache:
     - node_modules
 
 before_script:
-  - npm build
+  - npm run build
   - npm start --silent &
 
 script:
