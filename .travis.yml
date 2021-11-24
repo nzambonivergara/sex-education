@@ -8,5 +8,5 @@ notifications:
 deploy:
   provider: surge
   project: ./static/
-  domain: http://sex-education.surge.sh
+  domain: sex-education.surge.sh
   cleanup: false
